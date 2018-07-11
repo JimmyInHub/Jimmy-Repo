@@ -33,6 +33,12 @@
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-web</artifactId>
 	</dependency>
+    
+    <!-- spring 制动器-->
+    <dependency>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-actuator</artifactId>
+	</dependency>
 	
 	<!-- jdbc支持 -->
 	<dependency>

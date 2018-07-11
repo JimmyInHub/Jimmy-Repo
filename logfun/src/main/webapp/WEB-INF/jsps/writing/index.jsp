@@ -14,7 +14,7 @@
 <div id='articleTd'>
 	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
 	 	<legend>个人日记</legend>
-	 	<button class="layui-btn layui-btn-primary layui-btn-xs" id='addArticle' onclick=window.open('/writing/editor')>添加</button>
+	 	<button class="layui-btn layui-btn-primary layui-btn-xs" id='addArticle' onclick="window.open('/writing/editor')">添加</button>
 	</fieldset>
 	<ul class="layui-timeline">
 	  <li class="layui-timeline-item">
@@ -28,8 +28,7 @@
 	  </li>
 	</ul>  
 </div>	 
-	
-	
+
     <script type="text/javascript" src="/js/layui.all.js"></script>
 </body>
 </html>
