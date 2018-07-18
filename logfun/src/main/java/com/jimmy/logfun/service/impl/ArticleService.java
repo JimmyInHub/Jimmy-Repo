@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.jimmy.logfun.Utils.ResultInfo;
@@ -13,6 +14,7 @@ import com.jimmy.logfun.mapper.ArticleMapper;
 import com.jimmy.logfun.service.IArticleService;
 
 @Service
+@Transactional
 public class ArticleService implements IArticleService {
 	
 	@Autowired
@@ -47,6 +49,17 @@ public class ArticleService implements IArticleService {
 		PageHelper.startPage(0, pageSize);
 		List<Article> list = articleMapper.find();
 		return list;
+	}
+
+	/**
+	 * @author Jimmy
+	 * @date   2018/7/18
+	 * @return list
+	 * @desvription 查询概述
+	 */
+	@Override
+	public List<Article> querySummary() {
+		return articleMapper.find();
 	}
 
 }
