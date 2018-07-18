@@ -135,6 +135,7 @@
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/plugins.js"></script>
   <script type="text/javascript" src="/js/scripts.js"></script>
+  <script type="text/javascript" src="/js/layui.all.js"></script>
 
   <!-- Instafeed -->
   <script type="text/javascript">

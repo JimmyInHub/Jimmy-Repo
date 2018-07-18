@@ -6,12 +6,12 @@
    <link rel="stylesheet" href="/css/editor/editormd.min.css" type="text/css" />
    <link rel="stylesheet" href="/css/editor/style.css" />
    <link rel="stylesheet" href="/css/editor/editormd.css" />
-   <%@ include file="/WEB-INF/jsps/common/head.jsp"%>   
+   <%@ include file="/WEB-INF/jsps/common/head.jsp"%>
 <title>只言片语</title>
 </head>
 <body class="relative">
               
-<!-- 文字记录区 <br> -->
+	<!-- 文字记录区 <br> -->
     <!-- editormd start -->
     <div class="editormd" id="test-editormd">
     <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" id="editormd"></textarea>
@@ -21,12 +21,12 @@
     </div>
     <!-- editormd end --> 
   	<button class="layui-btn layui-btn-primary layui-btn-xs" id='saveArticle' onClick=save()>保存</button>
-<!-- editormd start -->
-  <script type="text/javascript" src="/js/editormd.min.js"></script>
-  <script type="text/javascript">
-	  var testEditor;
 	
-	  testEditor=$(function() {
+	<!-- editormd start -->
+  	<script type="text/javascript" src="/js/editormd.min.js"></script>
+ 	<script type="text/javascript">
+	  var testEditor ;
+	  testEditor = $(function() {
 	      editormd("test-editormd", {
 	           width   : "90%",
 	           height  : 640,
@@ -49,23 +49,35 @@
 	      });
 	
 	  });
-	  
 	  var save = function() {
 		  var content = $('#editorhtml').val();
-		  $.ajax({
-	        type: "post",
-	        dataType: "html",
-	        url: '/writing/save',
-	        data: {content:content},
-	        success: function (data) {
-	            if (data.success) {
-	               alert('保存成功');
-	            }
-	        }
-		 });
+		  
+		  //无内容提示
+		  if(!content){
+			  layer.alert('请输入文章内容!', {icon: 6});
+			  return;
+		  }
+		  
+		  //输入标题
+	   	  layer.prompt({title: '请输入标题', formType: 2}, function(text, index){
+	   		layer.close(index);
+	   		  $.ajax({
+		         type: "post",
+		         dataType: "html",
+		         url: '/writing/save',
+		         data: {content:content, title:text},
+		         success: function (data) {
+		        	 var json = eval("("+data+")");
+		         	 if (json.success) {
+		        		layer.closeAll('loading');
+		        		layer.msg('保存成功');
+		             }
+		         }
+			  });
+	   		  layer.load();
+		  });
 	  }
-	
 	</script>
-<!-- editormd end --> 
+	<!-- editormd end --> 
 </body>
 </html>
