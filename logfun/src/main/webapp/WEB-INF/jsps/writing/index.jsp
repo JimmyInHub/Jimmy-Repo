@@ -14,11 +14,23 @@
 <!-- 文章时间线区块 -->
 <div id='articleDiv' class="container">
   <div class="layui-row">
-	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-		<legend>个人日记</legend>
-		<!-- <button class="layui-btn layui-btn-primary layui-btn-xs" id='addArticle' onclick="window.open('/writing/editor')">添加</button> -->
-	</fieldset>
-	<div id='articleTl' style='padding-left:50px;overflow:auto;height:800px;overflow-y:auto;overflow-x:hidden' class="layui-col-md4">
+	   <fieldset>
+           <legend>
+               <a>个人日记</a>
+               <div class="layui-btn-group" style="float:right;">
+                   <button class="layui-btn layui-btn-primary layui-btn-sm" style="border: 0px;">
+                       <i class="layui-icon">&#xe654;</i>
+                   </button>
+                   <button class="layui-btn layui-btn-primary layui-btn-sm" style="border: 0px;">
+                       <i class="layui-icon">&#xe642;</i>
+                   </button>
+                   <button class="layui-btn layui-btn-primary layui-btn-sm" style="border: 0px;">
+                       <i class="layui-icon">&#xe640;</i>
+                   </button>
+               </div>
+           </legend>
+	   </fieldset>
+	<div id='articleTl' style='padding-left:50px;overflow:auto;height:800px;overflow-y:auto;overflow-x:hidden;border-right:solid 1px #e5e5e5;' class="layui-col-md4">
 		<ul class="layui-timeline">
 			<c:forEach items="${articles}" var="article">
 			  <li class="layui-timeline-item">
@@ -29,6 +41,12 @@
 			    </div>
 			  </li>
 			</c:forEach>
+            <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                <div class="layui-timeline-content layui-text">
+                    <div class="layui-timeline-title">END</div>
+                </div>
+            </li>
 		</ul>
 	</div>
 	<div id='articleDt' class="layui-col-md8" style="height:800px;overflow-y:auto;overflow-x:hidden;padding:20px;" >
