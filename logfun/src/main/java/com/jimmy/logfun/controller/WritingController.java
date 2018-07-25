@@ -23,6 +23,7 @@ public class WritingController {
 	public String index(Model model) {
 		List<Article> articles= articleService.querySummary();
 		model.addAttribute("articles", articles);
+		model.addAttribute("firstArticle", articles.get(0).getContent());
 		return "/writing/index";
 	}
 	

@@ -5,20 +5,20 @@
 <html>
 <head>
 <title>只言片语</title>
-<%@ include file="/WEB-INF/jsps/common/head.jsp"%>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="/css/layui.css" media="all">
+	<%@ include file="/WEB-INF/jsps/common/head.jsp"%>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/css/layui.css" media="all">
 </head>
 <body class="relative">
 
 <!-- 文章时间线区块 -->
-<div id='articleDiv'>
+<div id='articleDiv' class="container">
   <div class="layui-row">
-	<div id='articleTl' style='padding-left:50px;' layui-col-md9">
-		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
-		 	<legend>个人日记</legend>
-		 	<!-- <button class="layui-btn layui-btn-primary layui-btn-xs" id='addArticle' onclick="window.open('/writing/editor')">添加</button> -->
-		</fieldset>
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+		<legend>个人日记</legend>
+		<!-- <button class="layui-btn layui-btn-primary layui-btn-xs" id='addArticle' onclick="window.open('/writing/editor')">添加</button> -->
+	</fieldset>
+	<div id='articleTl' style='padding-left:50px;overflow:auto;height:800px;overflow-y:auto;overflow-x:hidden' class="layui-col-md4">
 		<ul class="layui-timeline">
 			<c:forEach items="${articles}" var="article">
 			  <li class="layui-timeline-item">
@@ -29,10 +29,10 @@
 			    </div>
 			  </li>
 			</c:forEach>
-		</ul>  
+		</ul>
 	</div>
-	<div id='articleDt' class="layui-col-md3">
-	
+	<div id='articleDt' class="layui-col-md8" style="height:800px;overflow-y:auto;overflow-x:hidden;padding:20px;" >
+		${firstArticle}
 	</div> 
    </div>
 </div>

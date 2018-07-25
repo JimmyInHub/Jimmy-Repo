@@ -1,1 +1,9 @@
 1.App.java类智能放在com.jimmy.logfun包下面，不能再包一层，否则内部的路径映射不到。
+2.IDEAL 启动项目时pom中的<scope>要注释掉，（idea编译启动后找不到被指定为provided这种jar包）
+    <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
+        <!--<scope>provided</scope>-->
+    </dependency>
+   然后修改运行环境Run-->Edit Configuration-->Working directory --> 添加$MODULE_DIR$
+  Eclipse 无此问题
