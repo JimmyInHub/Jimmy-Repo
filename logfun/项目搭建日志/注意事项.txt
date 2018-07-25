@@ -1,0 +1,1 @@
+1.App.java类智能放在com.jimmy.logfun包下面，不能再包一层，否则内部的路径映射不到。

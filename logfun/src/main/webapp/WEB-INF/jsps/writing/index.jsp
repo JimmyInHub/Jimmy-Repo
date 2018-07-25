@@ -7,13 +7,14 @@
 <title>只言片语</title>
 <%@ include file="/WEB-INF/jsps/common/head.jsp"%>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <link rel="stylesheet" href="/css/layui.css"  media="all">
+  <link rel="stylesheet" href="/css/layui.css" media="all">
 </head>
 <body class="relative">
 
 <!-- 文章时间线区块 -->
 <div id='articleDiv'>
-	<div id='articleTl' style='padding-left:50px;'>
+  <div class="layui-row">
+	<div id='articleTl' style='padding-left:50px;' layui-col-md9">
 		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
 		 	<legend>个人日记</legend>
 		 	<!-- <button class="layui-btn layui-btn-primary layui-btn-xs" id='addArticle' onclick="window.open('/writing/editor')">添加</button> -->
@@ -30,9 +31,10 @@
 			</c:forEach>
 		</ul>  
 	</div>
-	<div id='articleDt'>
+	<div id='articleDt' class="layui-col-md3">
 	
 	</div> 
+   </div>
 </div>
     <script type="text/javascript" src="/js/layui.all.js"></script>
     <script type="text/javascript" src="/js/article/article.js"></script>

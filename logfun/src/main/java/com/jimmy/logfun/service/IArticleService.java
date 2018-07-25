@@ -2,8 +2,8 @@ package com.jimmy.logfun.service;
 
 import java.util.List;
 
-import com.jimmy.logfun.Utils.ResultInfo;
 import com.jimmy.logfun.domain.Article;
+import com.jimmy.logfun.utils.ResultInfo;
 
 public interface IArticleService {
 	ResultInfo save(Article article);

@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="/css/responsive.css" />
   <link rel="stylesheet" href="/css/spacings.css" />
   <link rel="stylesheet" href="/css/animate.min.css" />
+  <link rel="stylesheet" href="/css/layui.css" />
 <title>logfun</title>
 </head>
 <body class="relative">

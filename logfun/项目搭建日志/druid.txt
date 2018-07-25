@@ -1,0 +1,13 @@
+2018/7/25
+配置druid监控sql
+	1.首先配置 druid maven 依赖
+	2.配置 application.properties中连接池配置
+	3.spring boot整合druid的方式也和其它一样,可以分为javabean和配置文件properties的方式
+	     本项目采用配置文件的方式，在application.properties配置监控配置
+配置说明
+	1.spring.datasource.druid.web-stat-filter.principal-session-name   session监控
+	2.spring.datasource.druid.web-stat-filter.principal-cookie-name    cookie监控
+	3.spring.datasource.druid.web-stat-filter.profile-enable    	        配置profileEnable能够监控单个url调用的sql列表
+	4.spring.datasource.druid.stat-view-servlet.allow=192.168.1.110	        白名单
+	5.spring.datasource.druid.stat-view-servlet.deny=192.168.16.111           黑名单
+	6.spring.datasource.druid.aop-patterns=com.xyy.service			         监控指定位置

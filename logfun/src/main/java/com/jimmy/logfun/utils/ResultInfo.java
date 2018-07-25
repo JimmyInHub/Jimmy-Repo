@@ -1,4 +1,4 @@
-package com.jimmy.logfun.Utils;
+package com.jimmy.logfun.utils;
 
 public class ResultInfo {
 	

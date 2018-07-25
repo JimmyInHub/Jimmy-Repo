@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.jimmy.logfun.Utils.ResultInfo;
 import com.jimmy.logfun.domain.Article;
 import com.jimmy.logfun.service.IArticleService;
+import com.jimmy.logfun.utils.ResultInfo;
 
 @Controller
 @RequestMapping("/writing")

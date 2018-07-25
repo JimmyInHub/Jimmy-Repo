@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
-import com.jimmy.logfun.Utils.ResultInfo;
 import com.jimmy.logfun.domain.Article;
 import com.jimmy.logfun.mapper.ArticleMapper;
 import com.jimmy.logfun.service.IArticleService;
+import com.jimmy.logfun.utils.ResultInfo;
 
 @Service
 @Transactional
