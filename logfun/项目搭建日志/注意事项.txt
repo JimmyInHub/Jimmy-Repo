@@ -7,3 +7,6 @@
     </dependency>
    然后修改运行环境Run-->Edit Configuration-->Working directory --> 添加$MODULE_DIR$
   Eclipse 无此问题
+3.在ideal中，*Mapper.java无法自动注入，会报错，但是不影响启动；eclipse中无此问题；
+    原因：ideal中的spring会检查bean注入规范
+    解决办法：在*mapper上加上@Component即可

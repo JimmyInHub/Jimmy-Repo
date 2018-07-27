@@ -3,8 +3,18 @@ package com.jimmy.logfun.mapper;
 import java.util.List;
 
 import com.jimmy.logfun.domain.Article;
+import org.springframework.stereotype.Component;
 
+/**
+ * @description: 文章映射mapper接口
+ * @fileName: ArticleMapper.java
+ * @date: 2018/7/27 15:58
+ * @author: Jimmy
+ * @version: v1.0
+ */
+@Component
 public interface ArticleMapper {
+
 	/**
 	 * @author Jimmy
 	 * @date   2018/7/18
@@ -27,4 +37,12 @@ public interface ArticleMapper {
 	 * @desvription 查询概列表
 	 */
 	List<Article> find();
+
+	/**
+	 * @description: 更新文章
+	 * @param: article
+	 * @date: 2018/7/27 16:27
+	 * @author: Jimmy
+	 */
+	void update(Article article);
 }

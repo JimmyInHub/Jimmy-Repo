@@ -10,7 +10,7 @@
 <title>只言片语</title>
 </head>
 <body class="relative">
-              
+    <div id="articleId" style="visibility: hidden;">${id}</div>
 	<!-- 文字记录区 <br> -->
     <!-- editormd start -->
     <div class="editormd" id="test-editormd">
@@ -21,62 +21,44 @@
     </div>
     <!-- editormd end --> 
   	<button class="layui-btn layui-btn-primary layui-btn-xs" id='saveArticle' onClick=save()>保存</button>
+    <button class="layui-btn layui-btn-primary layui-btn-xs" onclick="location.href='/writing/index'">返回</button>
 	
 	<!-- editormd start -->
   	<script type="text/javascript" src="/js/editormd.min.js"></script>
+    <script type="text/javascript" src="/js/article/article.js"></script>
  	<script type="text/javascript">
-	  var testEditor ;
-	  testEditor = $(function() {
-	      editormd("test-editormd", {
-	           width   : "90%",
-	           height  : 640,
-	           codeFold : true,
-	           syncScrolling : "single",
-	           						
-	           path : "/lib/", 				//目录的路径
-	           imageUpload: true, 			//图片上传功能
-/* 	           theme: "white",				//工具栏主题
-	           previewTheme: "white",		//预览主题
-	           editorTheme: "pastel-on-dark",//编辑主题  */
-	           emoji: true,					//表情
-	           taskList: true, 
-	           tocm: true,         			// Using [TOCM]
-	           tex: true,                   // 开启科学公式TeX语言支持，默认关闭
-	           flowChart: true,             // 开启流程图支持，默认关闭
-	           sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
-	          //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
-	           saveHTMLToTextarea : true            
-	      });
-	
-	  });
-	  var save = function() {
-		  var content = $('#editorhtml').val();
-		  
-		  //无内容提示
-		  if(!content){
-			  layer.alert('请输入文章内容!', {icon: 6});
-			  return;
-		  }
-		  
-		  //输入标题
-	   	  layer.prompt({title: '请输入标题', formType: 2}, function(text, index){
-	   		layer.close(index);
-	   		  $.ajax({
-		         type: "post",
-		         dataType: "html",
-		         url: '/writing/save',
-		         data: {content:content, title:text},
-		         success: function (data) {
-		        	 var json = eval("("+data+")");
-		         	 if (json.success) {
-		        		layer.closeAll('loading');
-		        		layer.msg('保存成功');
-		             }
-		         }
-			  });
-	   		  layer.load();
-		  });
-	  }
+
+          var save = function() {
+              var content = $('#editorhtml').val();
+
+              //无内容提示
+              if(!content){
+                  layer.alert('请输入文章内容!', {icon: 6});
+                  return;
+              }
+
+              //输入标题
+              layer.prompt({title: '请输入标题', formType: 2}, function(text, index){
+                layer.close(index);
+                  $.ajax({
+                     type: "post",
+                     dataType: "html",
+                     url: '/writing/save',
+                     data: {content:content, title:text},
+                     success: function (data) {
+                         var json = eval("("+data+")");
+                         if (json.success) {
+                            layer.closeAll('loading');
+                            layer.msg('保存成功');
+                         }
+
+                         // 跳转到首页
+                         window.location.href="/writing/index"
+                     }
+                  });
+                  layer.load();
+              });
+          }
 	</script>
 	<!-- editormd end --> 
 </body>
