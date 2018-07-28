@@ -83,8 +83,8 @@
               <div class="col-md-12 nav-wrap">
                 <div class="collapse navbar-collapse text-center" id="navbar-collapse">
                   <ul class="nav navbar-nav">
-										<li><a href="index.html">主页</a></li>
-										<li><a href="#word">文字</a></li>
+										<li><a href="/home">主页</a></li>
+										<li><a href="/writing/index">文字</a></li>
 					          <li><a href="#picture">图片</a></li>
 										<li><a href="#video">视频</a></li>
                     <li id="mobile-search" class="hidden-lg hidden-md">
