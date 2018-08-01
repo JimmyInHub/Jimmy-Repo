@@ -13,17 +13,18 @@
         <result property="author" column="author" jdbcType="VARCHAR"/>
         <result property="title" column="title" jdbcType="VARCHAR"/>
         <result property="content" column="content" jdbcType="CLOB"/>
+        <result property="plainText" column="plainText" jdbcType="CLOB"/>
     </resultMap>
      <sql id="Base_Column_List">
-         id, createTime, createName, updateTime, updateName, status, title, content, author
+         id, createTime, createName, updateTime, updateName, status, title, content, plainText, author
      </sql>
 	<select id="get" parameterType="long" resultType="Article"> 
 		select <include refid="Base_Column_List"/> from t_article where id = #{id} 
 	</select>
 	
 	<insert id="save" parameterType="Article" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
-	    insert into t_article(createTime, createName, updateTime, updateName, status, title, content, author)
-        values(#{createTime}, #{createName}, #{updateTime}, #{updateName}, #{status}, #{title}, #{content}, #{author})
+	    insert into t_article(createTime, createName, updateTime, updateName, status, title, content, plainText, author)
+        values(#{createTime}, #{createName}, #{updateTime}, #{updateName}, #{status}, #{title}, #{content}, #{plainText}, #{author})
 	</insert>
 	
 	<select id="find" resultType="Article">
@@ -36,7 +37,8 @@
             <if test="updateName != '' and updateName != null">updateName = #{updateName},</if>
             <if test="status != '' and status != null">status = #{status},</if>
             <if test="title != '' and title != null">title = #{title},</if>
-            <if test="content != '' and content != null">content = #{content}</if>
+            <if test="content != '' and content != null">content = #{content},</if>
+            <if test="plainText != '' and plainText != null"> plainText = #{plainText}</if>
         where id = #{id}
     </update>
 </mapper>

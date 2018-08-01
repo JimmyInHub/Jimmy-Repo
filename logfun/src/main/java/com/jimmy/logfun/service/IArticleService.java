@@ -13,10 +13,32 @@ import com.jimmy.logfun.utils.ResultInfo;
  * @version: v1.0
  */
 public interface IArticleService {
+
+	/**
+	 * @description: 保存/修改文章内容
+	 * @param: article 文章实体
+	 * @return: ResultInfo 结果信息
+	 * @date: 2018/8/1 14:32
+	 * @author: Jimmy
+	 */
 	ResultInfo save(Article article);
+
+	/**
+	 * @description: 通过id获取一篇文章
+	 * @param: id
+	 * @return: Article
+	 * @date: 2018/8/1 14:32
+	 * @author: Jimmy
+	 */
 	Article get(Long id);
 	
-	
+	/**
+	 * @description: 获取文章列表
+	 * @param: pageSize 单页数量
+	 * @return: list
+	 * @date: 2018/8/1 14:33
+	 * @author: Jimmy
+	 */
 	List<Article> find(int pageSize);
 	
 	/**

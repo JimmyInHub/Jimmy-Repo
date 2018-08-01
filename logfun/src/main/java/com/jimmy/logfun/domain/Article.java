@@ -14,6 +14,9 @@ public class Article extends BaseEntity{
 	
 	//	内容
 	private String content;
+
+	//	原始内容
+	private String plainText;
 	
 	//	作者
 	private String author;
@@ -21,7 +24,7 @@ public class Article extends BaseEntity{
 	//	状态
 	private String status;
 
-	public String getTitle() { 
+	public String getTitle() {
 		return title; 
 	}
 	
@@ -51,5 +54,13 @@ public class Article extends BaseEntity{
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getPlainText() {
+		return plainText;
+	}
+
+	public void setPlainText(String plainText) {
+		this.plainText = plainText;
 	}
 }

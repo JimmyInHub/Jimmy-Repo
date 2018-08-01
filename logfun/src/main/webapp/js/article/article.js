@@ -39,8 +39,8 @@ var baseFun = {
                 data: {id:id},
                 success: function (data) {
                     var json = eval("("+data+")");
-                    var content = json.content;
-                    $("#editormd").val(content);
+                    var plainText = json.plainText;
+                    $("#editormd").val(plainText);
                 }
             });
         }
@@ -92,34 +92,55 @@ var baseFun = {
      */
     save : function() {
         var content = $('#editorhtml').val();
+        var plainText = $('#editormd').val();
 
         //  无内容提示
         if(!content){
             layer.alert('请输入文章内容!', {icon: 6});
             return;
         }
+        var id = $("#articleId").html();
+        if(!id){
 
-        //  输入标题
-        layer.prompt({title: '请输入标题', formType: 2}, function(text, index){
-            layer.close(index);
+            //  输入标题
+            layer.prompt({title: '请输入标题', formType: 2}, function(text, index){
+                layer.close(index);
+                $.ajax({
+                    type: "post",
+                    dataType: "html",
+                    url: '/writing/save',
+                    data: {content:content, title:text, plainText:plainText},
+                    success: function (data) {
+                        var json = eval("("+data+")");
+                        if (json.success) {
+                            layer.closeAll('loading');
+                            layer.msg('保存成功');
+                        }
+
+                        // 跳转到首页
+                        window.location.href="/writing/index"
+                    }
+                });
+                layer.load();
+            });
+        }else{
             $.ajax({
                 type: "post",
                 dataType: "html",
                 url: '/writing/save',
-                data: {content:content, title:text},
+                data: {content:content, plainText:plainText, id:id},
                 success: function (data) {
                     var json = eval("("+data+")");
                     if (json.success) {
                         layer.closeAll('loading');
-                        layer.msg('保存成功');
+                        layer.msg('修改成功');
                     }
 
                     // 跳转到首页
                     window.location.href="/writing/index"
                 }
             });
-            layer.load();
-        });
+        }
     },
 
     /**
