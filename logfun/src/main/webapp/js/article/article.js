@@ -9,7 +9,7 @@ var baseFun = {
 
     //  markdown编辑器初始化
     init:function(){
-        editormd("test-editormd", {
+        mdEditor = editormd("test-editormd", {
             width   : "90%",
             height  : 640,
             codeFold : true,
@@ -39,8 +39,8 @@ var baseFun = {
                 data: {id:id},
                 success: function (data) {
                     var json = eval("("+data+")");
-                    var plainText = json.plainText;
-                    $("#editormd").val(plainText);
+                    var content = json.content;
+                    $("#editormd").val(content);
                 }
             });
         }
@@ -91,11 +91,10 @@ var baseFun = {
      * @desvription 保存/修改文章
      */
     save : function() {
-        var content = $('#editorhtml').val();
-        var plainText = $('#editormd').val();
+        var mdtext = mdEditor.getMarkdown();
 
         //  无内容提示
-        if(!content){
+        if(!mdtext){
             layer.alert('请输入文章内容!', {icon: 6});
             return;
         }
@@ -109,7 +108,7 @@ var baseFun = {
                     type: "post",
                     dataType: "html",
                     url: '/writing/save',
-                    data: {content:content, title:text, plainText:plainText},
+                    data: {content:mdtext, title:text},
                     success: function (data) {
                         var json = eval("("+data+")");
                         if (json.success) {
@@ -128,7 +127,7 @@ var baseFun = {
                 type: "post",
                 dataType: "html",
                 url: '/writing/save',
-                data: {content:content, plainText:plainText, id:id},
+                data: {content:mdtext, id:id},
                 success: function (data) {
                     var json = eval("("+data+")");
                     if (json.success) {
