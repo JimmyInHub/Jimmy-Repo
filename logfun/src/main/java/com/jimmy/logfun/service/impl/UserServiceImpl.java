@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.jimmy.logfun.domain.User;
-import com.jimmy.logfun.mapper.UserMapper;
+import com.jimmy.logfun.mapper.IUserMapper;
 import com.jimmy.logfun.service.IUserService;
 
 @Service
 public class UserServiceImpl implements IUserService {
 	
 	@Autowired
-	private UserMapper mapper;
+	private IUserMapper mapper;
 	
 	@Override
 	public void save(User user) {

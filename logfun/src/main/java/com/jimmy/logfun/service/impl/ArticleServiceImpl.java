@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import com.jimmy.logfun.mapper.ArticleMapper;
+import com.jimmy.logfun.mapper.IArticleMapper;
 import com.jimmy.logfun.utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ArticleServiceImpl implements IArticleService {
 	
 	@Autowired
-	private ArticleMapper articleMapper;
+	private IArticleMapper IArticleMapper;
 
 	/**
 	 * @description: 保存文章
@@ -44,16 +44,16 @@ public class ArticleServiceImpl implements IArticleService {
         article.setUpdateTime(updateTime);
         article.setUpdateName("Jimmy");
 
-		//第一次保存时,创建时间和更新时间一致
+		//	第一次保存时,创建时间和更新时间一致
         Long id = article.getId();
         if(id == null){
             article.setStatus(Constants.STATUS_VALID);
             article.setCreateTime(updateTime);
             article.setCreateName("Jimmy");
             article.setAuthor("Jimmy");
-            articleMapper.save(article);
+            IArticleMapper.save(article);
         }else{
-            articleMapper.update(article);
+            IArticleMapper.update(article);
         }
 		return resultInfo;
 	}
@@ -66,7 +66,7 @@ public class ArticleServiceImpl implements IArticleService {
 	 */
 	@Override
 	public Article get(Long id) {
-		return articleMapper.get(id);
+		return IArticleMapper.get(id);
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class ArticleServiceImpl implements IArticleService {
 		
 		//分页功能
 		PageHelper.startPage(0, pageSize);
-		List<Article> list = articleMapper.find();
+		List<Article> list = IArticleMapper.find();
 		return list;
 	}
 
@@ -92,7 +92,7 @@ public class ArticleServiceImpl implements IArticleService {
 	 */
 	@Override
 	public List<Article> querySummary() {
-		return articleMapper.find();
+		return IArticleMapper.find();
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class ArticleServiceImpl implements IArticleService {
 		}
 
 		//	根据id查询数据
-		Article article = articleMapper.get(id);
+		Article article = IArticleMapper.get(id);
 		if(article == null){
 			ri.fail("未查询到文章");
 			return ri;
@@ -122,7 +122,7 @@ public class ArticleServiceImpl implements IArticleService {
 		article.setStatus(Constants.STATUS_VOID);
 		article.setUpdateName("jimmy");
 		article.setUpdateTime(updateTime);
-		articleMapper.update(article);
+		IArticleMapper.update(article);
 		return ri;
 	}
 
