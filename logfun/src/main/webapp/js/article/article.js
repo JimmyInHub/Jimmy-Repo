@@ -40,7 +40,7 @@ var baseFun = {
                 success: function (data) {
                     var json = eval("("+data+")");
                     var content = json.content;
-                    $("#editormd").val(content);
+                    $("#articleText").val(content);
                 }
             });
         }
@@ -52,7 +52,6 @@ var baseFun = {
      * @desvription 根据文章id展示详细内容
      */
     updateArticle : function(){
-        debugger;
         var id = $("#currentArticleId").html();
         if(!id){
             layer.msg('未获取到文章ID，请联系程序员');
@@ -158,8 +157,7 @@ var baseFun = {
             success: function (data) {
                 var json = eval("("+data+")");
                 var content = json.content;
-                $("#articleDt").empty();
-                $("#articleDt").html(content);
+                $("#articleDt");
             }
         });
     }

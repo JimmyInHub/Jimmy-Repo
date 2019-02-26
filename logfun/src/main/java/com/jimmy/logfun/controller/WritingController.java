@@ -34,9 +34,12 @@ public class WritingController {
 	@RequestMapping("/index")
 	public String index(Model model) {
 		List<Article> articles= articleService.querySummary();
-		model.addAttribute("articles", articles);
-		model.addAttribute("firstArticle", articles.get(0));
-		return "/writing/index";
+        if (articles.isEmpty()) {
+            return "/writing/index";
+        }
+        model.addAttribute("articles", articles);
+        model.addAttribute("firstArticle", articles.get(0));
+        return "/writing/index";
 	}
 
 	/**
