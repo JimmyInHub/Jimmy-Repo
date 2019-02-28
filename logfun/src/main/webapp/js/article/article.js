@@ -40,7 +40,7 @@ var baseFun = {
                 success: function (data) {
                     var json = eval("("+data+")");
                     var content = json.content;
-                    $("#articleText").val(content);
+                    $("#editormd").val(content);
                 }
             });
         }
@@ -157,7 +157,19 @@ var baseFun = {
             success: function (data) {
                 var json = eval("("+data+")");
                 var content = json.content;
-                $("#articleDt");
+                $("#articleDt").empty();
+                var html = '<textarea class="layui-col-md8 editormd-html-textarea" name="editorhtml" readonly="readonly">' +
+                    content + '</textarea>';
+                $("#articleDt").append(html);
+                testEditor = editormd.markdownToHTML("articleDt", {//注意：这里是上面DIV的id
+                    htmlDecode : "style,script,iframe",
+                    emoji : true,
+                    taskList : true,
+                    tex : true, // 默认不解析
+                    flowChart : true, // 默认不解析
+                    sequenceDiagram : true, // 默认不解析
+                    codeFold : true
+                });
             }
         });
     }
