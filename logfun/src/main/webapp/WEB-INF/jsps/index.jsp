@@ -29,7 +29,7 @@
            	<h2 class="heading uppercase small">只言片语</h2>
           </div>
 
-          <div id="main-slider" class="flickity-slider-wrap">
+          <div id="main-slider1" class="flickity-slider-wrap">
 
           </div>
         </div>
@@ -43,7 +43,7 @@
             <h2 class="heading uppercase small">浮光掠影</h2>
           </div>
 
-          <div id="main-slider" class="flickity-slider-wrap">
+          <div id="main-slider2" class="flickity-slider-wrap">
 
           </div>
         </div>
@@ -57,7 +57,7 @@
             <h2 class="heading uppercase small">动静之间</h2>
           </div>
 
-          <div id="main-slider" class="flickity-slider-wrap">
+          <div id="main-slider3" class="flickity-slider-wrap">
 
           </div>
         </div>

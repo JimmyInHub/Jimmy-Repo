@@ -12,3 +12,4 @@
 3.在ideal中，*Mapper.java无法自动注入，会报错，但是不影响启动；eclipse中无此问题；
     原因：ideal中的spring会检查bean注入规范
     解决办法：在*mapper上加上@Component即可
+4.editor.md在展示成html时，需要引入较多js/css，点击文章查看内容，目前的做法是清空div中的内容，重新组装html，再初始化，后期可以优化

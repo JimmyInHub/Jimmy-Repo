@@ -2,9 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta charset="utf-8">
-    <!--[if IE]>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <meta content="text/html; charset=UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="">
 
@@ -59,8 +58,7 @@
                 <div class="container relative">
                     <div class="row">
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target="#navbar-collapse">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
                                 <span class="sr-only">导航栏</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
@@ -104,9 +102,9 @@
                             <ul class="nav navbar-nav" style="float: right">
                                     <li class="layui-nav-item"><a href=""><img src="//t.cn/RCzsdCq" class="layui-nav-img">个人中心</a>
                                     <dl class="layui-nav-child">
-                                        <dd><a href="javascript:;">修改信息</a></dd>
+                                        <dd><a href="javascript:;">我的主页</a></dd>
                                         <dd><a href="javascript:;">安全管理</a></dd>
-                                        <dd><a href="javascript:;">退了</a></dd>
+                                        <dd><a href="javascript:;">退出</a></dd>
                                     </dl>
                                 </li>
                             </ul>
