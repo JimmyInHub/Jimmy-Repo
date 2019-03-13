@@ -120,11 +120,11 @@
 </div>
 
 <!-- jQuery Scripts -->
-<script type="text/javascript" src="/js/jquery.min.js"></script>
-<script type="text/javascript" src="/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/js/plugins.js"></script>
-<script type="text/javascript" src="/js/scripts.js"></script>
-<script type="text/javascript" src="/js/layui.all.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/plugins.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/scripts.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/layui.all.js"></script>
 
 <!-- Instafeed -->
 <script type="text/javascript">
