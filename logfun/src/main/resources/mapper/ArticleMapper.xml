@@ -27,7 +27,7 @@
 	</insert>
 	
 	<select id="find" resultType="Article">
-		select <include refid="Base_Column_List"/> from t_article where status = '10'  order by id desc
+		select <include refid="Base_Column_List"/> from t_article where status = '10' order by id desc
 	</select>
 
     <update id="update">

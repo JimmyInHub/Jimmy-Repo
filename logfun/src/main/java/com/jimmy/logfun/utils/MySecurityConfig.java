@@ -23,7 +23,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter{
                 .loginProcessingUrl("/login") // 自定义的登录接口
                 .and()
                 .authorizeRequests()    // 定义哪些URL需要被保护、哪些不需要被保护
-                .antMatchers("/login","/css/**","/img/**","/font/**","/fonts/**","/lib/**","/js/frames/**","/js/css/**").permitAll()   // 放行登录页面及静态资源
+                .antMatchers("/login","/home","/css/**","/img/**","/font/**","/fonts/**","/lib/**","/js/frames/**","/js/css/**").permitAll()   // 放行登录页面及静态资源
                 .anyRequest()        // 任何请求,登录后可以访问
                 .authenticated()
                 .and()

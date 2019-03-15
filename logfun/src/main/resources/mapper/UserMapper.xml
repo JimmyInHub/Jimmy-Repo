@@ -3,17 +3,46 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jimmy.logfun.mapper.IUserMapper">
-	
+	<resultMap type="com.jimmy.logfun.domain.User" id="User">
+		<id property="id" column="id" jdbcType="DECIMAL"/>
+		<result property="createTime" column="createTime" jdbcType="VARCHAR"/>
+		<result property="createName" column="createName" jdbcType="VARCHAR"/>
+		<result property="updateTime" column="updateTime" jdbcType="VARCHAR"/>
+		<result property="updateName" column="updateName" jdbcType="VARCHAR"/>
+		<result property="status" column="status" jdbcType="VARCHAR"/>
+		<result property="userName" column="userName" jdbcType="VARCHAR"/>
+		<result property="passWord" column="passWord" jdbcType="VARCHAR"/>
+		<result property="phoneNum" column="phoneNum" jdbcType="VARCHAR"/>
+		<result property="email" column="email" jdbcType="VARCHAR"/>
+		<result property="role" column="role" jdbcType="VARCHAR"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+         id,createTime, createName, updateTime, updateName,status,userName,passWord,phoneNum,email,role
+     </sql>
 	<select id="get" parameterType="long" resultType="User"> 
-		select * from t_user where id = #{id} 
+		select <include refid="Base_Column_List"/> from t_user where id = #{id}
 	</select>
 	
 	<insert parameterType="User" id="save" keyColumn="id"
 		keyProperty="id" useGeneratedKeys="true"> 
-		insert into t_user(name,age) values(#{name},#{age}) 
+		insert into t_user(createTime, createName, updateTime, updateName,status,userName,passWord,phoneNum,email,role)
+		values(#{createTime}, #{createName}, #{updateTime}, #{updateName}, #{status},#{userName},#{passWord},#{phoneNum},#{email},#{role})
 	</insert>
 	
 	<select id="find" resultType="User">
-		select * from t_user
+		select <include refid="Base_Column_List"/> from t_user where status = '10' order by id desc
 	</select>
+
+	<update id="update">
+		update t_user set
+		<if test="updateTime != '' and updateTime != null">updateTime = #{updateTime},</if>
+		<if test="updateName != '' and updateName != null">updateName = #{updateName},</if>
+		<if test="status != '' and status != null">status = #{status},</if>
+		<if test="userName != '' and userName != null">userName = #{userName},</if>
+		<if test="passWord != '' and passWord != null">passWord = #{passWord},</if>
+		<if test="phoneNum != '' and phoneNum != null">phoneNum = #{phoneNum},</if>
+		<if test="email != '' and email != null">email = #{email},</if>
+		<if test="role != '' and role != null">role = #{role}</if>
+		where id = #{id}
+	</update>
 </mapper>

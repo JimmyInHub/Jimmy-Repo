@@ -11,7 +11,7 @@ public class ResultInfo {
 
     private static final String SUCCESS = "200";
     private static final String ERROR = "500";    //  异常时返回错误
-    private static final String FAIL = "400";
+    private static final String FAIL = "401";
 
 	//	返回结果,默认为true
 	private Boolean success;

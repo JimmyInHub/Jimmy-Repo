@@ -1,5 +1,7 @@
 package com.jimmy.logfun.domain;
 
+import java.io.Serializable;
+
 /**
  * @description: 基础表实体
  * @fileName: BaseEntity.java
@@ -7,7 +9,8 @@ package com.jimmy.logfun.domain;
  * @author: Jimmy
  * @version: v1.0
  */
-public class BaseEntity {
+public class BaseEntity implements Serializable {
+	private static final long serialVersionUID = 2716244744215225664L;
 	private Long id;
 	private String createTime;
 	private String createName;
