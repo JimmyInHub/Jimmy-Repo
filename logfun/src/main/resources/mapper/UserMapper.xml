@@ -45,4 +45,8 @@
 		<if test="role != '' and role != null">role = #{role}</if>
 		where id = #{id}
 	</update>
+
+	<select id="findByUserName" resultType="User">
+		select <include refid="Base_Column_List"/> from t_user where status = '10' and userName = #{userName}
+	</select>
 </mapper>

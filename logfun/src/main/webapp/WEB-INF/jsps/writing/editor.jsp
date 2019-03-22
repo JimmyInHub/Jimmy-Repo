@@ -7,7 +7,7 @@
    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editor/style.css" />
    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editor/editormd.css" />
    <%@ include file="/WEB-INF/jsps/common/head.jsp"%>
-<title>只言片语</title>
+    <title>只言片语</title>
 </head>
 <body class="relative">
     <div id="articleId" style="visibility: hidden;">${id}</div>
@@ -24,8 +24,8 @@
     <button class="layui-btn layui-btn-primary layui-btn-xs" onclick="location.href='/writing/index'">返回</button>
 	
 	<!-- editormd start -->
-  	<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/editormd.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/article/article.js"></script>
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/editormd.min.js"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/article/article.js"/>
  	<script type="text/javascript">
         baseFun.init();
 	</script>

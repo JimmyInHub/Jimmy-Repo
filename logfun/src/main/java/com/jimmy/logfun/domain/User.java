@@ -1,6 +1,11 @@
 package com.jimmy.logfun.domain;
 
-public class User extends BaseEntity{
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+
+public class User extends BaseEntity implements UserDetails {
 
 	/**
 	 * 状态
@@ -78,5 +83,40 @@ public class User extends BaseEntity{
 
 	public void setRole(String role) {
 		this.role = role;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return null;
+	}
+
+	@Override
+	public String getPassword() {
+		return userName;
+	}
+
+	@Override
+	public String getUsername() {
+		return passWord;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return "10".equals(status);
 	}
 }

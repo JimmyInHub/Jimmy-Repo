@@ -1,5 +1,6 @@
 package com.jimmy.logfun.service;
 
+import com.jimmy.logfun.domain.User;
 import com.jimmy.logfun.utils.ResultInfo;
 
 /**
@@ -14,12 +15,10 @@ public interface ILoginService {
 
     /**
      * 登录验证
-     * @param userName
-     * @param pwd
-     * @return ResultInfo
+     * @param user
+     * @return Boolean
      * @date: 2018/7/27 16:24
      * @author: Jimmy
      */
-    ResultInfo login(String userName, String pwd);
-
+    Boolean userLogin(User user);
 }
