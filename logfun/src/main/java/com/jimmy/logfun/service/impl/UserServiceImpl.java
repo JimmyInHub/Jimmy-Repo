@@ -4,9 +4,7 @@ import java.util.List;
 
 import com.jimmy.logfun.utils.InnerException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -20,8 +18,8 @@ import org.springframework.util.StringUtils;
  * 根据username从数据库获取该用户的信息，然后交给security进行后续比对和处理
  */
 @Service
-public class UserServiceImpl implements IUserService , UserDetailsService {
-	
+public class UserServiceImpl implements IUserService{
+	//public class UserServiceImpl implements IUserService , UserDetailsService {
 	@Autowired
 	private IUserMapper userMapper;
 	
@@ -50,12 +48,12 @@ public class UserServiceImpl implements IUserService , UserDetailsService {
 	 * @return
 	 * @throws UsernameNotFoundException
 	 */
-	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		if(StringUtils.isEmpty(userName)){
-			throw new InnerException("未获取到用户名！");
-		}
-		User user = userMapper.findByUserName(userName);
-		return user;
-	}
+//	@Override
+//	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+//		if(StringUtils.isEmpty(userName)){
+//			throw new InnerException("未获取到用户名！");
+//		}
+//		User user = userMapper.findByUserName(userName);
+//		return user;
+//	}
 }

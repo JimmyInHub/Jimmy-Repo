@@ -1,33 +1,120 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Jimmy
-  Date: 2019/3/5
-  Time: 20:57
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <meta content="text/html; charset=UTF-8">
-    <link href="css/login.css" rel='stylesheet' type='text/css' />
-    <title>logfun登陆</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>logfun登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <script src="${pageContext.request.contextPath}/js/frame/modernizr-2.6.2.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/frame/respond.min.js"></script>
 </head>
-<body>
-<div class="login-form">
-    <form id = "login_form">
-        <input type="text" class="text" value="userName" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '用户名';}" >
-        <div class="key">
-            <input type="password" value="passWord" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '密码';}">
+<body class="style-3">
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-push-8 formDiv">
+
+            <!-- 登录 -->
+            <div class="loginDiv">
+                <form action="/login/login" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
+                    <h2>登录</h2>
+                    <div class="form-group">
+                        <%--<label for="username" class="sr-only">用户名"</label>--%>
+                        <input type="text" class="form-control" name="userName" placeholder="userName" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <%--<label for="password" class="sr-only">密码</label>--%>
+                        <input type="password" class="form-control" name="passWord" placeholder="password" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <%--<label for="remember">--%>
+                        <input type="checkbox" name="remember"> 一周内记住我</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="登录" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        还没有账号? <a href="#" onclick="showSign()">注册</a> | <a href="#" onclick="showForget()">忘记密码?</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 注册 -->
+            <div class="signinDiv" style="display:none">
+                <form action="/login/sign" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
+                    <h2>注册</h2>
+<%--                    <div class="form-group">
+                        <div class="alert alert-success" role="alert">Your info has been saved.</div>
+                    </div>--%>
+                    <div class="form-group">
+                        <%--<label for="name" class="sr-only">Name</label>--%>
+                        <input type="text" class="form-control" name="userName" placeholder="昵称" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <%--<label for="email" class="sr-only">Email</label>--%>
+                        <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <%--<label for="password" class="sr-only">Password</label>--%>
+                        <input type="password" class="form-control" name="passWord" placeholder="昵称" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <label for="re-password" class="sr-only">Re-type Password</label>
+                        <input type="password" class="form-control" id="re-password" placeholder="确认密码" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="提交" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已经注册了? <a href="#" onclick="showlogin()">登录</a>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 忘记密码 -->
+            <div class="forgetDiv" style="display:none">
+                <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
+                    <h2>忘记密码</h2>
+<%--                    <div class="form-group">
+                        <div class="alert alert-success" role="alert">Your email has been sent.</div>
+                    </div>--%>
+                    <div class="form-group">
+                        <label for="email" class="sr-only">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Email" autocomplete="off">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="发送邮件" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="showlogin()">登录</a> or <a href="#" onclick="showSign()">注册</a>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
-    <div class="signin">
-        <input type="submit" value="Login" onclick='baseFun.login()' />
+    </div>
+    <div class="footerTip" style="padding-top: 60px; clear: both;">
+        <div class="col-md-12 text-center"><p><small>Copyright &copy; 2019.本网站属个人开发，如有意见和建议，请联系@Jimmy 729255858@qq.com</small></p></div>
     </div>
 </div>
-<div class="copy-rights">
-    <p>Copyright &copy; 2019.本网站属个人开发，如有意见和建议，请联系@Jimmy 729255858@qq.com</p>
-</div>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/jquery.min.js"/>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/login/login.js"/>
+<script src="${pageContext.request.contextPath}/js/frame/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/frame/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/frame/jquery.placeholder.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/frame/jquery.waypoints.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/frame/main.js"></script>
+<script type="text/javascript">
+    function showSign () {
+        $(".loginDiv").hide();
+        $(".forgetDiv").hide();
+        $(".signinDiv").show();
+    }
+    function showForget () {
+        $(".loginDiv").hide();
+        $(".signinDiv").hide();
+        $(".forgetDiv").show();
+    }
+    function showlogin () {
+        $(".loginDiv").show();
+        $(".signinDiv").hide();
+        $(".forgetDiv").hide();
+    }
+</script>
 </body>
 </html>

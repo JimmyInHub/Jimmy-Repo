@@ -3,13 +3,9 @@ package com.jimmy.logfun.service.impl;
 import com.jimmy.logfun.domain.User;
 import com.jimmy.logfun.service.ILoginService;
 import com.jimmy.logfun.service.IUserService;
-import com.jimmy.logfun.utils.ResultInfo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 /**
  * FileName: LoginServiceImpl
@@ -24,6 +20,7 @@ public class LoginServiceImpl implements ILoginService {
 
     @Autowired
     private IUserService userService;
+
     /**
      * 登录验证
      * @param user
@@ -33,24 +30,25 @@ public class LoginServiceImpl implements ILoginService {
      */
     @Override
     public Boolean userLogin(User user) {
-        if(StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getPassWord())){
-            return false;
-        }
-        
-        /**
-         * 传入的密码
-         * TODO 暂时不做md5加密
-         */
-        String passWord = user.getPassWord();
-        
-        UserDetails userDetails = userService.loadUserByUsername(user.getUserName());
-        if(userDetails == null){
-            return false;
-        }
-
-        //  数据库中的密码
-        String userDetailPassword = userDetails.getPassword();
-
-        return passWord.equals(userDetailPassword);
+//        if(StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getPassWord())){
+//            return false;
+//        }
+//
+//        /**
+//         * 传入的密码
+//         * TODO 暂时不做md5加密
+//         */
+//        String passWord = user.getPassWord();
+//
+//        UserDetails userDetails = userService.loadUserByUsername(user.getUserName());
+//        if(userDetails == null){
+//            return false;
+//        }
+//
+//        //  数据库中的密码
+//        String userDetailPassword = userDetails.getPassword();
+//
+//        return passWord.equals(userDetailPassword);
+        return true;
     }
 }

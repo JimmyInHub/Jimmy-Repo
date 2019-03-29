@@ -4,8 +4,6 @@ import com.jimmy.logfun.domain.User;
 import com.jimmy.logfun.service.ILoginService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +32,7 @@ public class LoginController {
      */
     @RequestMapping("/index")
     public String index(){
-        return "/login/login";
+        return "/WEB-INF/jsps/login/login";
     }
 
     /**
@@ -64,6 +62,6 @@ public class LoginController {
             model.addAttribute("error",error);
         if(logout==true)
             model.addAttribute("logout",logout);
-        return "/login/login";
+        return "/WEB-INF/jsps/login/login";
     }
 }
