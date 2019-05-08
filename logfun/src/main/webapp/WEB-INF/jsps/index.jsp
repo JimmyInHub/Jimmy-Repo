@@ -56,7 +56,6 @@
           <div class="heading-row text-center mb-40">
             <h2 class="heading uppercase small">动静之间</h2>
           </div>
-
           <div id="main-slider3" class="flickity-slider-wrap">
 
           </div>

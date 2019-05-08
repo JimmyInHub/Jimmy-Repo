@@ -22,18 +22,15 @@
 
             <!-- 登录 -->
             <div class="loginDiv">
-                <form action="/login/login" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
+                <form action="/login" class="fh5co-form animate-box" data-animate-effect="fadeInRight" method="post">
                     <h2>登录</h2>
                     <div class="form-group">
-                        <%--<label for="username" class="sr-only">用户名"</label>--%>
                         <input type="text" class="form-control" name="userName" placeholder="userName" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <%--<label for="password" class="sr-only">密码</label>--%>
                         <input type="password" class="form-control" name="passWord" placeholder="password" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <%--<label for="remember">--%>
                         <input type="checkbox" name="remember"> 一周内记住我</label>
                     </div>
                     <div class="form-group">
@@ -44,23 +41,20 @@
             </div>
 
             <!-- 注册 -->
-            <div class="signinDiv" style="display:none">
-                <form action="/login/sign" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
+            <div class="signinDiv" style="display:none" method="post">
+                <form action="/register" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
                     <h2>注册</h2>
 <%--                    <div class="form-group">
                         <div class="alert alert-success" role="alert">Your info has been saved.</div>
                     </div>--%>
                     <div class="form-group">
-                        <%--<label for="name" class="sr-only">Name</label>--%>
                         <input type="text" class="form-control" name="userName" placeholder="昵称" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <%--<label for="email" class="sr-only">Email</label>--%>
                         <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <%--<label for="password" class="sr-only">Password</label>--%>
-                        <input type="password" class="form-control" name="passWord" placeholder="昵称" autocomplete="off">
+                        <input type="password" class="form-control" name="passWord" placeholder="密码" autocomplete="off">
                     </div>
                     <div class="form-group">
                         <label for="re-password" class="sr-only">Re-type Password</label>
@@ -73,7 +67,7 @@
             </div>
 
             <!-- 忘记密码 -->
-            <div class="forgetDiv" style="display:none">
+            <div class="forgetDiv" style="display:none" method="post">
                 <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
                     <h2>忘记密码</h2>
 <%--                    <div class="form-group">

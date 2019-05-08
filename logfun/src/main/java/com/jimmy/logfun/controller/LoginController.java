@@ -3,7 +3,10 @@ package com.jimmy.logfun.controller;
 import com.jimmy.logfun.domain.User;
 import com.jimmy.logfun.service.ILoginService;
 
+import com.jimmy.logfun.utils.ResultInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +35,7 @@ public class LoginController {
      */
     @RequestMapping("/index")
     public String index(){
-        return "/WEB-INF/jsps/login/login";
+        return "/login/index";
     }
 
     /**
@@ -47,14 +50,13 @@ public class LoginController {
         model.addAttribute(user);
 
         //如果已经登陆跳转到个人首页
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        if(authentication!=null&&
-//                !authentication.getPrincipal().equals("anonymousUser")&&
-//                authentication.isAuthenticated()){
-//            return "/home";
-//        }else{
-//
-//        }
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if(authentication != null && !authentication.getPrincipal().equals("anonymousUser") &&
+                authentication.isAuthenticated()){
+            return "/home";
+        }else{
+
+        }
             //  用户认证成功，则放行，否则提示异常
             error = !loginService.userLogin(user);
 
@@ -62,6 +64,21 @@ public class LoginController {
             model.addAttribute("error",error);
         if(logout==true)
             model.addAttribute("logout",logout);
-        return "/WEB-INF/jsps/login/login";
+        return "/login/index";
+    }
+
+    /**
+     * @description 注册页面
+     * @date: 2019/4/1
+     * @author: Jimmy
+     */
+    @RequestMapping("/register")
+    public String register(User user){
+        ResultInfo resultInfo = loginService.register(user);
+        if (resultInfo.getSuccess()){
+            return "/index";
+        }else{
+            return "/login/index";
+        }
     }
 }

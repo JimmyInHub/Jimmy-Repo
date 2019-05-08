@@ -3,9 +3,14 @@ package com.jimmy.logfun.service.impl;
 import com.jimmy.logfun.domain.User;
 import com.jimmy.logfun.service.ILoginService;
 import com.jimmy.logfun.service.IUserService;
+import com.jimmy.logfun.utils.ResultInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * FileName: LoginServiceImpl
@@ -50,5 +55,38 @@ public class LoginServiceImpl implements ILoginService {
 //
 //        return passWord.equals(userDetailPassword);
         return true;
+    }
+
+    /**
+     * @param user
+     * @description 注册页面
+     * @date: 2019/4/1
+     * @author: Jimmy
+     */
+    @Override
+    public ResultInfo register(User user) {
+        ResultInfo resultInfo = new ResultInfo();
+        if (user == null) {
+            resultInfo.fail("未获取到参数！");
+            return resultInfo;
+        }
+        if(StringUtils.isEmpty(user.getUserName())){
+            resultInfo.fail("请输入用户昵称！");
+            return resultInfo;
+        }
+        if(StringUtils.isEmpty(user.getPassWord())){
+            resultInfo.fail("请输入密码！");
+            return resultInfo;
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd");
+        String createTime = sdf.format(new Date());
+        user.setCreateTime(createTime);
+        user.setUpdateTime(createTime);
+        user.setCreateName(user.getUserName());
+        user.setUpdateName(user.getUpdateName());
+        userService.save(user);
+
+        return resultInfo;
     }
 }

@@ -21,4 +21,11 @@ public interface ILoginService {
      * @author: Jimmy
      */
     Boolean userLogin(User user);
+
+    /**
+     * @description 注册页面
+     * @date: 2019/4/1
+     * @author: Jimmy
+     */
+    ResultInfo register(User user);
 }
