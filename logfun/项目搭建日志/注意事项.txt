@@ -1,6 +1,9 @@
 1.App.java类智能放在com.jimmy.logfun包下面，不能再包一层，否则内部的路径映射不到。
     “Application类”是指SpringBoot项目入口类。这个类的位置很关键：如果Application类所在的包为：com.jimmy.logfun，则只会扫描com.jimmy.logfun包及其所有子包.
      如果service或dao所在包不在com.jimmy.logfun及其子包下，则不会被扫描！即, 把Application类放到dao、service所在包的上级
+
+     启动原理说明：https://mp.weixin.qq.com/s/1yHtaoSqqIJItIXByvV5QA
+
 2.IDEAL 启动项目时pom中的<scope>要注释掉，（idea编译启动后找不到被指定为provided这种jar包）
     <dependency>
         <groupId>org.apache.tomcat.embed</groupId>
@@ -9,7 +12,9 @@
     </dependency>
    然后修改运行环境Run-->Edit Configuration-->Working directory --> 添加$MODULE_DIR$
   Eclipse 无此问题
+
 3.在ideal中，*Mapper.java无法自动注入，会报错，但是不影响启动；eclipse中无此问题；
     原因：ideal中的spring会检查bean注入规范
     解决办法：在*mapper上加上@Component即可
+
 4.editor.md在展示成html时，需要引入较多js/css，点击文章查看内容，目前的做法是清空div中的内容，重新组装html，再初始化，后期可以优化

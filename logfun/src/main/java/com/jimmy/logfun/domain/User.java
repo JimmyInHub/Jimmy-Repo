@@ -1,17 +1,9 @@
 package com.jimmy.logfun.domain;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-
-/**
- * UserDetails spring security 需要
- */
-public class User extends BaseEntity implements UserDetails {
+public class User extends BaseEntity{
 
 	/**
-	 * 状态(默认10)
+	 * 状态(默认10启用，00作废)
 	 */
 	private String status = "10";
 
@@ -36,9 +28,14 @@ public class User extends BaseEntity implements UserDetails {
 	private String email;
 
 	/**
-	 * 角色(默认为会员)
+	 * 头像
 	 */
-	private String role = "member";
+	private String avatar;
+
+	/**
+	 * 记住我
+	 */
+	private String rememberMe;
 
 	public String getStatus() {
 		return status;
@@ -80,46 +77,19 @@ public class User extends BaseEntity implements UserDetails {
 		this.email = email;
 	}
 
-	public String getRole() {
-		return role;
+	public String getAvatar() {
+		return avatar;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+	public String getRememberMe() {
+		return rememberMe;
 	}
 
-	@Override
-	public String getPassword() {
-		return passWord;
-	}
-
-	@Override
-	public String getUsername() {
-		return userName;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return "10".equals(status);
+	public void setRememberMe(String rememberMe) {
+		this.rememberMe = rememberMe;
 	}
 }

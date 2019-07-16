@@ -31,7 +31,7 @@
                         <input type="password" class="form-control" name="passWord" placeholder="password" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="remember"> 一周内记住我</label>
+                        <input type="checkbox" name="rememberMe" title="记住我"/> 一周内记住我</label>
                     </div>
                     <div class="form-group">
                         <input type="submit" value="登录" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -48,12 +48,15 @@
                         <div class="alert alert-success" role="alert">Your info has been saved.</div>
                     </div>--%>
                     <div class="form-group">
+                        <%--<label for="name" class="sr-only">Name</label>--%>
                         <input type="text" class="form-control" name="userName" placeholder="昵称" autocomplete="off">
                     </div>
                     <div class="form-group">
+                        <%--<label for="email" class="sr-only">Email</label>--%>
                         <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off">
                     </div>
                     <div class="form-group">
+                        <%--<label for="password" class="sr-only">Password</label>--%>
                         <input type="password" class="form-control" name="passWord" placeholder="密码" autocomplete="off">
                     </div>
                     <div class="form-group">
@@ -71,7 +74,7 @@
                 <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
                     <h2>忘记密码</h2>
 <%--                    <div class="form-group">
-                        <div class="alert alert-success" role="alert">Your email has been sent.</div>
+                        <div class="alert alert-success" rerole="alert">Your email has been sent.</div>
                     </div>--%>
                     <div class="form-group">
                         <label for="email" class="sr-only">Email</label>

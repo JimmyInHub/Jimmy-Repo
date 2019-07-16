@@ -5,15 +5,16 @@ import java.util.List;
 import com.jimmy.logfun.domain.User;
 
 public interface IUserService {
-	void save(User user);
-	User get(Long id);
-	List<User> find(int pageSize);
+    void save(User user);
 
-	/**
-	 * 复写父类方法
-	 * @param username
-	 * @return
-	 * @throws UsernameNotFoundException
-	 */
-//	UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+    User get(Long id);
+
+    List<User> find(int pageSize);
+
+    /**
+     * 根据用户名查询用户
+     * @param username
+     * @return user
+     */
+    User getByName(String username);
 }

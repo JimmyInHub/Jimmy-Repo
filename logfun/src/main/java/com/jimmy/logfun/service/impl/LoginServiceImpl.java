@@ -35,25 +35,9 @@ public class LoginServiceImpl implements ILoginService {
      */
     @Override
     public Boolean userLogin(User user) {
-//        if(StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getPassWord())){
-//            return false;
-//        }
-//
-//        /**
-//         * 传入的密码
-//         * TODO 暂时不做md5加密
-//         */
-//        String passWord = user.getPassWord();
-//
-//        UserDetails userDetails = userService.loadUserByUsername(user.getUserName());
-//        if(userDetails == null){
-//            return false;
-//        }
-//
-//        //  数据库中的密码
-//        String userDetailPassword = userDetails.getPassword();
-//
-//        return passWord.equals(userDetailPassword);
+        if(StringUtils.isEmpty(user.getUserName()) || StringUtils.isEmpty(user.getPassWord())){
+            return false;
+        }
         return true;
     }
 

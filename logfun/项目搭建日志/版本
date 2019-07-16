@@ -1,4 +1,4 @@
 spring-boot版本
     1.初始版本1.4.1
     2.2018.7.27修改为1.5.14
-    3.权限使用spring security
+    3.权限使用spring shiro

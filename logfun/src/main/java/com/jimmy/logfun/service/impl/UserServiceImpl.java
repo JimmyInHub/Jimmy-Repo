@@ -2,12 +2,9 @@ package com.jimmy.logfun.service.impl;
 
 import java.util.List;
 
-import com.jimmy.logfun.utils.InnerException;
+import com.jimmy.logfun.utils.ParamsException;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
@@ -16,12 +13,8 @@ import com.jimmy.logfun.mapper.IUserMapper;
 import com.jimmy.logfun.service.IUserService;
 import org.springframework.util.StringUtils;
 
-/**
- * UserDetailService是spring security提供给我们的获取用户信息的Service，主要给security提供验证用户的信息
- * 根据username从数据库获取该用户的信息，然后交给security进行后续比对和处理
- */
 @Service
-public class UserServiceImpl implements IUserService, UserDetailsService {
+public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private IUserMapper userMapper;
@@ -46,17 +39,16 @@ public class UserServiceImpl implements IUserService, UserDetailsService {
 	}
 
 	/**
-	 * 根据用户名查找用户信息返回给security
-	 * @param userName
-	 * @return
-	 * @throws UsernameNotFoundException
+	 * 根据用户名查询用户
+	 *
+	 * @param username
+	 * @return user
 	 */
 	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		if(StringUtils.isEmpty(userName)){
-			throw new UsernameNotFoundException("未获取到用户名！");
+	public User getByName(String username) {
+		if(StringUtils.isEmpty(username)){
+			throw new ParamsException("未获取到参数：username");
 		}
-		User user = userMapper.findByUserName(userName);
-		return user;
+		return userMapper.findByUserName(username);
 	}
 }

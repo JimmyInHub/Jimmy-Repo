@@ -2,17 +2,15 @@ package com.jimmy.logfun.controller;
 
 import com.jimmy.logfun.domain.User;
 import com.jimmy.logfun.service.ILoginService;
-
 import com.jimmy.logfun.utils.ResultInfo;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @description: 登陆控制器
@@ -24,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/")
 public class LoginController {
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private ILoginService loginService;
@@ -44,27 +43,18 @@ public class LoginController {
      * @author: Jimmy
      */
     @RequestMapping("/login")
-    public String login(Model model, User user
-            , @RequestParam(value = "error",required = false) boolean error
-            , @RequestParam(value = "logout",required = false) boolean logout, HttpServletRequest request){
-        model.addAttribute(user);
+    public String login(User user){
+        Subject currentUser = SecurityUtils.getSubject();
 
-        //如果已经登陆跳转到个人首页
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if(authentication != null && !authentication.getPrincipal().equals("anonymousUser") &&
-                authentication.isAuthenticated()){
-            return "/home";
-        }else{
+        //  判断是否登陆
+        if(!currentUser.isAuthenticated()){
 
+            //  没登陆，创建验证token
+            UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(),
+                    user.getPassWord().toCharArray(), "on".equals(user.getRememberMe()));
+            currentUser.login(token);
         }
-            //  用户认证成功，则放行，否则提示异常
-            error = !loginService.userLogin(user);
-
-        if(error==true)
-            model.addAttribute("error",error);
-        if(logout==true)
-            model.addAttribute("logout",logout);
-        return "/login/index";
+        return "/home";
     }
 
     /**
