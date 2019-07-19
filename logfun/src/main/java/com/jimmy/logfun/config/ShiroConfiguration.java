@@ -36,13 +36,13 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilterFactoryBean.setLoginUrl("/index");
+        shiroFilterFactoryBean.setLoginUrl("/log/index");
 
         // 登录成功后要跳转的链接
-        shiroFilterFactoryBean.setSuccessUrl("/home");
+        shiroFilterFactoryBean.setSuccessUrl("/home/index");
 
         //未授权界面;
-        shiroFilterFactoryBean.setUnauthorizedUrl("/error/404.html");
+        shiroFilterFactoryBean.setUnauthorizedUrl("forward:/error/404.html");
 
         //拦截器.
         Map<String,String> filterChainDefinitionMap = new LinkedHashMap<String,String>();
@@ -74,11 +74,11 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/admin/**", "roles[admin]");
 
         //开放登陆接口
-        filterChainDefinitionMap.put("/index", "anon");
-        filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/log/index", "anon");
+        filterChainDefinitionMap.put("/log/login", "anon");
 
         //开放主页
-        filterChainDefinitionMap.put("/home", "anon");
+        filterChainDefinitionMap.put("/home/index", "anon");
 
         //其余接口一律拦截
         //主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
@@ -93,7 +93,7 @@ public class ShiroConfiguration {
     public SecurityManager securityManager(){
         DefaultWebSecurityManager manager =  new DefaultWebSecurityManager();
         manager.setRealm(myRealm());
-        manager.setCacheManager(ehCacheManager());
+//        manager.setCacheManager(ehCacheManager());
 
         //注入Cookie记住我管理器
         manager.setRememberMeManager(rememberMeManager());

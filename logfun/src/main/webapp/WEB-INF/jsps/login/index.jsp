@@ -6,23 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>logfun登录</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Free HTML5 Template by FreeHTML5.co" />
-    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+    <meta name="description" content="logfun 日志 生活 乐趣" />
+    <meta name="keywords" content="logfun 日志 生活 乐趣" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layui.css">
+
     <script src="${pageContext.request.contextPath}/js/frame/modernizr-2.6.2.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/frame/respond.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/frame/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/frame/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/frame/jquery.placeholder.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/frame/jquery.waypoints.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/frame/main.js"></script>
+    <script src="${pageContext.request.contextPath}/js/frame/layui.all.js"></script>
 </head>
 <body class="style-3">
+<input type="hidden" id="errorMsg" name="errorMsg" value="${errorMsg}" />
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-push-8 formDiv">
-
             <!-- 登录 -->
             <div class="loginDiv">
-                <form action="/login" class="fh5co-form animate-box" data-animate-effect="fadeInRight" method="post">
+                <form id="login_form" class="fh5co-form animate-box" data-animate-effect="fadeInRight" method="post" onclick="login()">
                     <h2>登录</h2>
                     <div class="form-group">
                         <input type="text" class="form-control" name="userName" placeholder="userName" autocomplete="off">
@@ -34,7 +42,7 @@
                         <input type="checkbox" name="rememberMe" title="记住我"/> 一周内记住我</label>
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="登录" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="button" value="登录" class="btn btn-primary" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         还没有账号? <a href="#" onclick="showSign()">注册</a> | <a href="#" onclick="showForget()">忘记密码?</a>
                     </div>
                 </form>
@@ -64,7 +72,7 @@
                         <input type="password" class="form-control" id="re-password" placeholder="确认密码" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="提交" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已经注册了? <a href="#" onclick="showlogin()">登录</a>
+                        <input type="button" value="提交" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已经注册了? <a href="#" onclick="showlogin()">登录</a>
                     </div>
                 </form>
             </div>
@@ -81,7 +89,7 @@
                         <input type="email" class="form-control" id="email" placeholder="Email" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="发送邮件" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="showlogin()">登录</a> or <a href="#" onclick="showSign()">注册</a>
+                        <input type="button" value="发送邮件" class="btn btn-primary">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="showlogin()">登录</a> or <a href="#" onclick="showSign()">注册</a>
                     </div>
                 </form>
             </div>
@@ -91,27 +99,41 @@
         <div class="col-md-12 text-center"><p><small>Copyright &copy; 2019.本网站属个人开发，如有意见和建议，请联系@Jimmy 729255858@qq.com</small></p></div>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/frame/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/frame/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/frame/jquery.placeholder.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/frame/jquery.waypoints.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/frame/main.js"></script>
 <script type="text/javascript">
+    var errorMsg = $("#errorMsg").val();
+    if(errorMsg != ''){
+        layer.open({
+            title: '登陆失败',
+            content: errorMsg
+        });
+    };
     function showSign () {
         $(".loginDiv").hide();
         $(".forgetDiv").hide();
         $(".signinDiv").show();
-    }
+    };
     function showForget () {
         $(".loginDiv").hide();
         $(".signinDiv").hide();
         $(".forgetDiv").show();
-    }
+    };
     function showlogin () {
         $(".loginDiv").show();
         $(".signinDiv").hide();
         $(".forgetDiv").hide();
-    }
+    };
+    function login () {
+        $.post( '/log/login', $("#login_form").serialize(),
+            function (data) {
+                if (data.success) {
+                    window.location.href = data.data;
+                } else {
+                    layer.alert(data.msg)
+                }
+            },
+            'json'
+        );
+    };
 </script>
 </body>
 </html>

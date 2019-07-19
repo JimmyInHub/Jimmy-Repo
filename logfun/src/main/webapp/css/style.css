@@ -28,6 +28,11 @@
   position: relative;
 }
 
+.center{
+  text-align: center;
+}
+
+
 .section-wrap {
   padding: 70px 0;
   overflow: hidden;
@@ -3737,6 +3742,19 @@ header.transparent .navbar-toggle .icon-bar {
   line-height: 24px;
   -webkit-border-radius: 0;
   border-radius: 0;
+}
+
+.content-show {
+  border: 1px solid #eaeaea;
+  height: 500px;
+  padding: 15px 20px;
+  line-height: 24px;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+.content-show-style {
+  margin-top: 35%;
+  margin-left: 45%
 }
 
 .accordion .panel-default > .panel-heading > a {

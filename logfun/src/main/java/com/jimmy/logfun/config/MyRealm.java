@@ -6,7 +6,9 @@ import com.jimmy.logfun.domain.User;
 import com.jimmy.logfun.service.IRolePermissionService;
 import com.jimmy.logfun.service.IUserRoleService;
 import com.jimmy.logfun.service.IUserService;
+import com.jimmy.logfun.utils.EncryptUtil;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -14,6 +16,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -82,20 +85,4 @@ public class MyRealm extends AuthorizingRealm {
         }
         return new SimpleAuthenticationInfo(user,user.getPassWord(),getName());
     }
-
-    /**
-     * 覆写shiro密码验证方法
-     */
-//    @PostConstruct
-//    public void initCredentialsMatcher(){
-//        setCredentialsMatcher(new CredentialsMatcher() {
-//            @Override
-//            public boolean doCredentialsMatch(AuthenticationToken token, AuthenticationInfo info) {
-//                UsernamePasswordToken authcToken = (UsernamePasswordToken) token;
-//                Object tokenCredentials = EncryptUtil.md5(String.valueOf(authcToken.getPassword()));
-//                Object accountCredentials = getCredentials(info);
-//                return accountCredentials.equals(tokenCredentials);
-//            }
-//        });
-//    }
 }

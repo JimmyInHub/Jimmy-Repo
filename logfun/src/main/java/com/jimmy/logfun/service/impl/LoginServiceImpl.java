@@ -3,6 +3,7 @@ package com.jimmy.logfun.service.impl;
 import com.jimmy.logfun.domain.User;
 import com.jimmy.logfun.service.ILoginService;
 import com.jimmy.logfun.service.IUserService;
+import com.jimmy.logfun.utils.EncryptUtil;
 import com.jimmy.logfun.utils.ResultInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,6 +70,9 @@ public class LoginServiceImpl implements ILoginService {
         user.setUpdateTime(createTime);
         user.setCreateName(user.getUserName());
         user.setUpdateName(user.getUpdateName());
+
+        //  密码进行md5加密
+        user.setPassWord(EncryptUtil.md5(user.getPassWord()));
         userService.save(user);
 
         return resultInfo;

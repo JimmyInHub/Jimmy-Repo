@@ -6,62 +6,25 @@
 <title>logfun主页</title>
 <%@ include file="/WEB-INF/jsps/common/head.jsp"%>
 </head>
-<body class="relative">
-
-    <section class="header-wrap hero-section bg-light">
-      <div class="container">
-        <div class="logo-container text-center">
-          <div class="logo-wrap">
-             <!-- 主题logo图片区域 -->
-             <img class="logo-dark" src="/img/logo.png" alt="logo">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <div class="content-wrapper oh">
-
-      <!-- 文字内容 时间轴 展示区 -->
-      <section class="section-wrap latest-stories pb-0">
-        <div class="container-fluid nopadding" id='word'>
-
-          <div class="heading-row text-center mb-40">
-           	<h2 class="heading uppercase small">只言片语</h2>
-          </div>
-
-          <div id="main-slider1" class="flickity-slider-wrap">
-
-          </div>
-        </div>
-      </section>
-      
-      <!-- 图片内容 展示区 -->
-      <section class="section-wrap latest-stories pb-0">
-        <div class="container-fluid nopadding" id='picture'>
-
-          <div class="heading-row text-center mb-40">
-            <h2 class="heading uppercase small">浮光掠影</h2>
-          </div>
-
-          <div id="main-slider2" class="flickity-slider-wrap">
-
-          </div>
-        </div>
-      </section> 
-      
-      <!-- 视频内容 展示区 -->
-      <section class="section-wrap latest-stories pb-0">
-        <div class="container-fluid nopadding" id='video'>
-
-          <div class="heading-row text-center mb-40">
-            <h2 class="heading uppercase small">动静之间</h2>
-          </div>
-          <div id="main-slider3" class="flickity-slider-wrap">
-
-          </div>
-        </div>
-      </section>
+<body>
+    <div class="bg-light center">
+        <img src="/img/logo.png" alt="logo" class="logo-dark">
     </div>
-  </div>
+
+    <div class="layui-row">
+        <div class="layui-col-xs4 bg-light content-show">
+            <div class="content-show-style "><img src="/img/show/pen.png" ></div>
+        </div>
+        <div class="layui-col-xs4 bg-light content-show">
+            <div class="content-show-style "><img src="/img/show/photo.png" ></div>
+        </div>
+        <div class="layui-col-xs4 bg-light content-show">
+            <div class="content-show-style "><img src="/img/show/video.png" ></div>
+        </div>
+    </div>
+
+    <div class="bottom-footer center">
+        www.logfun.fun<br/>©Jimmy
+    </div>
 </body>
 </html>

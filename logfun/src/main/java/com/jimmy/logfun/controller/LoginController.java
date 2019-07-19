@@ -6,11 +6,12 @@ import com.jimmy.logfun.utils.ResultInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @description: 登陆控制器
@@ -20,20 +21,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @version: v1.0
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/log")
 public class LoginController {
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private ILoginService loginService;
 
     /**
-     * @description 跳转到登录页
+     * @description 跳转到登录页/登出
      * @date: 2019/3/15
      * @author: Jimmy
      */
     @RequestMapping("/index")
-    public String index(){
+    public String index() {
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.logout();
         return "/login/index";
     }
 
@@ -43,18 +45,29 @@ public class LoginController {
      * @author: Jimmy
      */
     @RequestMapping("/login")
-    public String login(User user){
+    public String login(User user, HttpServletRequest request) {
         Subject currentUser = SecurityUtils.getSubject();
 
         //  判断是否登陆
-        if(!currentUser.isAuthenticated()){
+        if (!currentUser.isAuthenticated()) {
 
             //  没登陆，创建验证token
             UsernamePasswordToken token = new UsernamePasswordToken(user.getUserName(),
                     user.getPassWord().toCharArray(), "on".equals(user.getRememberMe()));
-            currentUser.login(token);
+            try {
+                currentUser.login(token);
+            } catch (Exception e) {
+                String msg = "用户名或密码错误！";
+                if (!StringUtils.isEmpty(e.getMessage())) {
+                    msg = e.getMessage();
+                }
+                request.setAttribute("errorMsg", msg);
+                return "redirect:/log/index";
+            }
+            Subject newUser = SecurityUtils.getSubject();
+            request.getSession().setAttribute("userInfo", newUser);
         }
-        return "/home";
+        return "redirect:/home/index";
     }
 
     /**
@@ -63,11 +76,11 @@ public class LoginController {
      * @author: Jimmy
      */
     @RequestMapping("/register")
-    public String register(User user){
+    public String register(User user) {
         ResultInfo resultInfo = loginService.register(user);
-        if (resultInfo.getSuccess()){
-            return "/index";
-        }else{
+        if (resultInfo.getSuccess()) {
+            return "redirect:/home/index";
+        } else {
             return "/login/index";
         }
     }
