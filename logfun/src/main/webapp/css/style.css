@@ -3754,7 +3754,18 @@ header.transparent .navbar-toggle .icon-bar {
 }
 .content-show-style {
   margin-top: 35%;
-  margin-left: 45%
+  margin-left: 45%;
+  transition: transform 0.25s ease;
+  float: left;
+  width: 33.3%;
+  height: 500px;
+  line-height: 200px;
+  list-style: none;
+}
+.content-show-style :hover{
+  transform: scale(1.2,1.2);
+  box-shadow: 0 0 10px #0000ff;
+  cursor: pointer;
 }
 
 .accordion .panel-default > .panel-heading > a {
