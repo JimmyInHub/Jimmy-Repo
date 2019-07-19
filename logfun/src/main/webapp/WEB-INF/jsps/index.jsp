@@ -7,19 +7,19 @@
 <%@ include file="/WEB-INF/jsps/common/head.jsp"%>
 </head>
 <body>
-    <div class="bg-light center">
-        <img src="/img/logo.png" alt="logo" class="logo-dark">
+    <div class="bg-light center logo-div">
+        <img src="/img/logo.png" alt="logo" class="logo-center">
     </div>
 
-    <div class="layui-row">
-        <div class="layui-col-xs4 bg-light content-show">
-            <div class="content-show-style "><img src="/img/show/pen.png" ></div>
+    <div class="content-div">
+        <div class="bg-light content-show content-left">
+            <img src="/img/show/pen.png" class="content-show-style ">
         </div>
-        <div class="layui-col-xs4 bg-light content-show">
-            <div class="content-show-style "><img src="/img/show/photo.png" ></div>
+        <div class="bg-light content-show content-center">
+            <img src="/img/show/photo.png" class="content-show-style ">
         </div>
-        <div class="layui-col-xs4 bg-light content-show">
-            <div class="content-show-style "><img src="/img/show/video.png" ></div>
+        <div class="bg-light content-show content-center">
+            <img src="/img/show/video.png" class="content-show-style ">
         </div>
     </div>
 
