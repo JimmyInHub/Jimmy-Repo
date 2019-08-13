@@ -6,6 +6,7 @@ import com.jimmy.logfun.domain.User;
 import com.jimmy.logfun.service.IRolePermissionService;
 import com.jimmy.logfun.service.IUserRoleService;
 import com.jimmy.logfun.service.IUserService;
+import com.jimmy.logfun.utils.Constants;
 import com.jimmy.logfun.utils.EncryptUtil;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
@@ -80,8 +81,8 @@ public class MyRealm extends AuthorizingRealm {
         if(user == null){
             throw new AccountException("账户不存在");
         }
-        if("00".equals(user.getStatus())){
-            throw new DisabledAccountException("账号已经禁止登录");
+        if(Constants.STATUS_VOID.equals(user.getStatus())){
+            throw new DisabledAccountException("账号已经注销");
         }
         return new SimpleAuthenticationInfo(user,user.getPassWord(),getName());
     }

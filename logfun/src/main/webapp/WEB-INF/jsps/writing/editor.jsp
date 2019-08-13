@@ -3,9 +3,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editor/editormd.min.css" type="text/css" />
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editor/style.css" />
-   <link rel="stylesheet" href="${pageContext.request.contextPath}/css/editor/editormd.css" />
+   <link rel="stylesheet" href="/css/editor/editormd.min.css" type="text/css" />
+   <link rel="stylesheet" href="/css/editor/style.css" />
+   <link rel="stylesheet" href="/css/editor/editormd.css" />
    <%@ include file="/WEB-INF/jsps/common/head.jsp"%>
     <title>只言片语</title>
 </head>
@@ -24,8 +24,8 @@
     <button class="layui-btn layui-btn-primary layui-btn-xs" onclick="location.href='/writing/index'">返回</button>
 	
 	<!-- editormd start -->
-  	<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/editormd.min.js"/>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/article/article.js"/>
+  	<script type="text/javascript" src="/js/frame/editormd.min.js"/>
+    <script type="text/javascript" src="/js/article/article.js"/>
  	<script type="text/javascript">
         baseFun.init();
 	</script>

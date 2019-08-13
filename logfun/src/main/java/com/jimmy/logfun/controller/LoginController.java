@@ -9,7 +9,10 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,7 +35,7 @@ public class LoginController {
      * @date: 2019/3/15
      * @author: Jimmy
      */
-    @RequestMapping("/index")
+    @GetMapping("/index")
     public String index() {
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
@@ -44,8 +47,10 @@ public class LoginController {
      * @date: 2019/3/15
      * @author: Jimmy
      */
-    @RequestMapping("/login")
-    public String login(User user, HttpServletRequest request) {
+    @PostMapping("/login")
+    @ResponseBody
+    public ResultInfo login(User user, HttpServletRequest request) {
+        ResultInfo resultInfo = new ResultInfo();
         Subject currentUser = SecurityUtils.getSubject();
 
         //  判断是否登陆
@@ -58,16 +63,13 @@ public class LoginController {
                 currentUser.login(token);
             } catch (Exception e) {
                 String msg = "用户名或密码错误！";
-                if (!StringUtils.isEmpty(e.getMessage())) {
-                    msg = e.getMessage();
-                }
-                request.setAttribute("errorMsg", msg);
-                return "redirect:/log/index";
+                resultInfo.fail(msg);
+                return resultInfo;
             }
             Subject newUser = SecurityUtils.getSubject();
             request.getSession().setAttribute("userInfo", newUser);
         }
-        return "redirect:/home/index";
+        return resultInfo;
     }
 
     /**
@@ -75,11 +77,11 @@ public class LoginController {
      * @date: 2019/4/1
      * @author: Jimmy
      */
-    @RequestMapping("/register")
+    @GetMapping("/register")
     public String register(User user) {
         ResultInfo resultInfo = loginService.register(user);
         if (resultInfo.getSuccess()) {
-            return "redirect:/home/index";
+            return "/home/index";
         } else {
             return "/login/index";
         }

@@ -9,22 +9,22 @@
     <meta name="description" content="logfun 日志 生活 乐趣" />
     <meta name="keywords" content="logfun 日志 生活 乐趣" />
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/animate.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/login.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layui.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/layui.css">
 
-    <script src="${pageContext.request.contextPath}/js/frame/modernizr-2.6.2.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/frame/respond.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/frame/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/frame/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/frame/jquery.placeholder.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/frame/jquery.waypoints.min.js"></script>
-    <script src="${pageContext.request.contextPath}/js/frame/main.js"></script>
-    <script src="${pageContext.request.contextPath}/js/frame/layui.all.js"></script>
+    <script src="/js/frame/modernizr-2.6.2.min.js"></script>
+    <script src="/js/frame/respond.min.js"></script>
+    <script src="/js/frame/jquery.min.js"></script>
+    <script src="/js/frame/bootstrap.min.js"></script>
+    <script src="/js/frame/jquery.placeholder.min.js"></script>
+    <script src="/js/frame/jquery.waypoints.min.js"></script>
+    <script src="/js/frame/main.js"></script>
+    <script src="/js/frame/layui.all.js"></script>
 </head>
 <body class="style-3">
-<input type="hidden" id="errorMsg" name="errorMsg" value="${errorMsg}" />
+<input type="hidden" id="errorMsg" name="errorMsg" value="${errorMsg }" />
 <div class="container">
     <div class="row">
         <div class="col-md-4 col-md-push-8 formDiv">
@@ -52,19 +52,13 @@
             <div class="signinDiv" style="display:none" method="post">
                 <form action="/register" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
                     <h2>注册</h2>
-<%--                    <div class="form-group">
-                        <div class="alert alert-success" role="alert">Your info has been saved.</div>
-                    </div>--%>
                     <div class="form-group">
-                        <%--<label for="name" class="sr-only">Name</label>--%>
                         <input type="text" class="form-control" name="userName" placeholder="昵称" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <%--<label for="email" class="sr-only">Email</label>--%>
                         <input type="email" class="form-control" name="email" placeholder="Email" autocomplete="off">
                     </div>
                     <div class="form-group">
-                        <%--<label for="password" class="sr-only">Password</label>--%>
                         <input type="password" class="form-control" name="passWord" placeholder="密码" autocomplete="off">
                     </div>
                     <div class="form-group">
@@ -81,9 +75,6 @@
             <div class="forgetDiv" style="display:none" method="post">
                 <form action="#" class="fh5co-form animate-box" data-animate-effect="fadeInRight">
                     <h2>忘记密码</h2>
-<%--                    <div class="form-group">
-                        <div class="alert alert-success" rerole="alert">Your email has been sent.</div>
-                    </div>--%>
                     <div class="form-group">
                         <label for="email" class="sr-only">Email</label>
                         <input type="email" class="form-control" id="email" placeholder="Email" autocomplete="off">
@@ -123,10 +114,50 @@
         $(".forgetDiv").hide();
     };
     function login () {
+        $("#login_form").validate({
+            rules: {
+                userName: {
+                    required: true
+                },
+                passWord: {
+                    required: true
+                }
+            },
+            messages: {
+                userName: {
+                    required: "请输入您的用户名",
+                },
+                passWord: {
+                    required: "请输入您的密码",
+                }
+            }
+        })
+
+        // var username = $.common.trim($("input[name='userName']").val());
+        // var password = $.common.trim($("input[name='passWord']").val());
+        // var rememberMe = $("input[name='rememberMe']").is(':checked');
+        // $.ajax({
+        //     type: "post",
+        //     url: "/log/login",
+        //     data: {
+        //         "userName": username,
+        //         "passWord": password,
+        //         //"validateCode" : validateCode,
+        //         "rememberMe": rememberMe
+        //     },
+        //     success: function(r) {
+        //         if (r.code == 0) {
+        //             location.href = "/home/index";
+        //         } else {
+        //             layer.alert(data.msg)
+        //         }
+        //     }
+        // });
+
         $.post( '/log/login', $("#login_form").serialize(),
             function (data) {
                 if (data.success) {
-                    window.location.href = data.data;
+                    window.location.href = "/home/index";
                 } else {
                     layer.alert(data.msg)
                 }

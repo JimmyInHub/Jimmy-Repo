@@ -81,7 +81,7 @@
                         <div class="col-md-12 nav-wrap">
                             <div class="collapse navbar-collapse text-center" id="navbar-collapse">
                                 <ul class="nav navbar-nav">
-                                    <li><a href="/home">首页</a></li>
+                                    <li><a href="/home/index">首页</a></li>
                                     <li><a href="/writing/index">文字</a></li>
                                     <li><a href="#picture">图片</a></li>
                                     <li><a href="#video">视频</a></li>
@@ -120,11 +120,11 @@
 </div>
 
 <!-- jQuery Scripts -->
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/jquery.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/bootstrap.min.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/plugins.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/scripts.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/frame/layui.all.js"></script>
+<script type="text/javascript" src="/js/frame/jquery.min.js"></script>
+<script type="text/javascript" src="/js/frame/bootstrap.min.js"></script>
+<script type="text/javascript" src="/js/frame/plugins.js"></script>
+<script type="text/javascript" src="/js/frame/scripts.js"></script>
+<script type="text/javascript" src="/js/frame/layui.all.js"></script>
 
 <!-- Instafeed -->
 <script type="text/javascript">
